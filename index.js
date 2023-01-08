@@ -1,5 +1,4 @@
 const express = require("express");
-const loadBalancer = require("./worker/loadBalancer");
 const logger = require("./middlewares/logger");
 
 const app = express();
@@ -17,11 +16,9 @@ app.get("/", (req, res) => {
 
 app.get("/timer", (req, res) => {
   delay(1000 * 10);
-  res.send(`Ding Ding Ding ${process.pid}`);
+  res.send(`Peep Peep Peep ${process.pid}`);
 });
 
-loadBalancer(() => {
-  app.listen(3000, () => {
-    console.log("Server Running");
-  });
+app.listen(3000, () => {
+  console.log("Server Running");
 });
